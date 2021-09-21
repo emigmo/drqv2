@@ -176,7 +176,7 @@ class Workspace:
                                         self.global_step,
                                         eval_mode=False)
 
-            # try to update the agent
+            # update the agent when (global_step > num_seed_frames=4000//2)
             if not seed_until_step(self.global_step):
                 metrics = self.agent.update(self.replay_iter, self.global_step)
                 self.logger.log_metrics(metrics, self.global_frame, ty='train')

@@ -7,7 +7,8 @@ from typing import Any, NamedTuple
 
 import dm_env
 import numpy as np
-from dm_control import manipulation, suite
+# from dm_control import manipulation, suite
+from dm_control import suite
 from dm_control.suite.wrappers import action_scale, pixels
 from dm_env import StepType, specs
 
@@ -188,10 +189,11 @@ def make(name, frame_stack, action_repeat, seed):
                          task_kwargs={'random': seed},
                          visualize_reward=False)
         pixels_key = 'pixels'
-    else:
-        name = f'{domain}_{task}_vision'
-        env = manipulation.load(name, seed=seed)
-        pixels_key = 'front_close'
+    # else:
+    #     name = f'{domain}_{task}_vision'
+    #     env = manipulation.load(name, seed=seed)
+    #     pixels_key = 'front_close'
+    
     # add wrappers
     env = ActionDTypeWrapper(env, np.float32)
     env = ActionRepeatWrapper(env, action_repeat)
